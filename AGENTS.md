@@ -40,6 +40,7 @@ Outside-universe research is allowed only as candidate, thesis, score, shadow tr
 | Order Review | Simulate paper execution; in an authorized live stage, prepare a broker review for the user. | Place, retry, cancel, or silently approve orders. |
 | End-of-Day Sync | Reconcile read-only state, update benchmarks and analytics, record incidents. | Place orders or loosen policy. |
 | Weekly Review | Evaluate operations, performance, and proposals; regenerate the public report. | Place orders, enable live execution, or promote a strategy. |
+| Public Report Publisher | Publish allowlisted sanitized evidence after validation and green CI. | Access the broker, change code/policy, publish non-allowlisted files, or bypass CI. |
 
 ## Durable State
 

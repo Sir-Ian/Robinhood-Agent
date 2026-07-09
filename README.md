@@ -14,7 +14,7 @@ The current account began with approximately $100. It holds a six-ETF baseline p
 | --- | --- |
 | Broker connectivity | Read-only connection verified July 9, 2026 |
 | Existing portfolio | Six ETF positions; sanitized snapshot checked in |
-| Unattended monitoring | Ready to schedule |
+| Unattended monitoring | Five active schedules; run lifecycle smoke-tested |
 | Paper decisions | Enabled |
 | Live order placement | Disabled; per-order human confirmation required |
 | Public-repo safety | Automated validation and secret-pattern scan included |
@@ -40,6 +40,8 @@ The active mode is `STAGED_AUTONOMY`:
 4. `ADAPTIVE_RESEARCH` — broader ideas remain shadow-only until evidence and explicit policy approval justify promotion.
 
 Stage advancement is evidence-based. An agent cannot promote itself, enable live trading, or loosen risk limits.
+
+Five schedules operate the system: four read-only/paper analysis roles plus a Friday publisher that can merge only allowlisted evidence-only changes after repository validation and green CI.
 
 ## Baseline Portfolio
 

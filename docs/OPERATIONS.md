@@ -9,7 +9,8 @@ All times are America/Chicago and market-day aware.
 | Morning Manager | Weekdays 07:50 | Fresh sanitized snapshot and no-action/paper intent |
 | Order Review | Weekdays 08:45 | Paper simulation or blocked/no-action |
 | End-of-Day Sync | Weekdays 15:15 | Reconciliation, benchmark inputs, report refresh |
-| Weekly Review | Friday 15:45 | Operating scorecard and strategy proposals |
+| Weekly Review | Friday 16:15 | Operating scorecard and strategy proposals |
+| Public Report Publisher | Friday 17:30 | Validated, allowlisted evidence published through GitHub |
 
 The schedules intentionally do not place orders. On holidays, tasks should record `no_action` with `market_closed` rather than fail.
 
@@ -24,7 +25,7 @@ python3 agentic-trading/scripts/automation_run.py finish \
   --summary "Market closed; snapshots refreshed."
 ```
 
-`begin` validates the repository and acquires an expiring lease under the ignored `.runtime/` directory. A concurrent run is blocked. An expired lease is recorded as abandoned before a new lease starts.
+`begin` validates the repository and acquires one repository-wide expiring lease under the ignored `.runtime/` directory. Any concurrent role is blocked because all roles share ledgers and snapshots. An expired lease is recorded as abandoned before a new lease starts.
 
 ## Normal Daily Checks
 

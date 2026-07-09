@@ -98,6 +98,12 @@ agent_permissions:
     may_enable_live_execution: false
     may_loosen_policy: false
     may_place_orders: false
+  public_report_publisher:
+    may_read_broker_data: false
+    may_publish_allowlisted_sanitized_evidence: true
+    may_modify_code_or_policy: false
+    may_place_orders: false
+    may_merge_only_green_data_only_pull_requests: true
 
 logging_requirements:
   run_records: agentic-trading/logs/run_records.jsonl

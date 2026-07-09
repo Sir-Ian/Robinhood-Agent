@@ -38,6 +38,10 @@ class RepositoryValidationTests(unittest.TestCase):
         errors = validate_repository.scan_sensitive_text(Path("README.md"), "Never persist an account number.")
         self.assertEqual(errors, [])
 
+    def test_automation_uses_one_repository_wide_lease(self) -> None:
+        automation_run = load_module("automation_run_test", SCRIPTS / "automation_run.py")
+        self.assertEqual(automation_run.ACTIVE_LEASE.name, "active.json")
+
 
 class ReportTests(unittest.TestCase):
     def test_payload_uses_sanitized_baseline(self) -> None:

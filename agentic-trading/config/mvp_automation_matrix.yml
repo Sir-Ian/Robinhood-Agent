@@ -1,7 +1,7 @@
 version: "2"
 mode: STAGED_AUTONOMY
 active_stage: PAPER
-purpose: "Compatibility filename for the active four-task schedule. No scheduled task may place an order."
+purpose: "Compatibility filename for the active five-task schedule. No scheduled task may place an order."
 
 automations:
   morning_manager:
@@ -29,10 +29,18 @@ automations:
     may_place_orders: false
     maximum_runtime_minutes: 45
   weekly_review:
-    schedule: "Friday 15:45 America/Chicago"
+    schedule: "Friday 16:15 America/Chicago"
     model: gpt-5.4
     reasoning: high
     prompt_file: agentic-trading/prompts/weekly_review_mvp.md
     broker_access: read_only
     may_place_orders: false
     maximum_runtime_minutes: 60
+  public_report_publisher:
+    schedule: "Friday 17:30 America/Chicago"
+    model: gpt-5.4
+    reasoning: high
+    prompt_file: agentic-trading/prompts/public_report_publisher.md
+    broker_access: none
+    may_place_orders: false
+    maximum_runtime_minutes: 45

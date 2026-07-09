@@ -6,6 +6,7 @@ scheduled_automations:
   - order_review
   - end_of_day_sync
   - weekly_review
+  - public_report_publisher
 
 disabled_legacy_prompts:
   - market_scanner

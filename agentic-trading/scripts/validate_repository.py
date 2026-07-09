@@ -187,7 +187,13 @@ def validate(root: Path = ROOT) -> list[str]:
                 errors.append(f"{key} must be false in {stage}")
 
     automations = matrix.get("automations", {})
-    expected_automations = {"morning_manager", "order_review", "end_of_day_sync", "weekly_review"}
+    expected_automations = {
+        "morning_manager",
+        "order_review",
+        "end_of_day_sync",
+        "weekly_review",
+        "public_report_publisher",
+    }
     if set(automations) != expected_automations:
         errors.append(f"scheduled automation set must be {sorted(expected_automations)}")
     for name, settings in automations.items():

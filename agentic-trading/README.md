@@ -20,8 +20,9 @@ The six positions already in the account are treated as `baseline_basket_v1`. Th
 2. Order Review simulates paper execution. In a future authorized live stage, it may prepare a broker review for the user but may not place.
 3. End-of-Day Sync reconciles broker facts with repository records and updates evaluation state.
 4. Weekly Review scores operating quality and regenerates the public experiment report.
+5. Public Report Publisher validates and publishes only allowlisted sanitized evidence through a green data-only pull request.
 
-Each task must acquire a run lease with `automation_run.py`, record blocked/no-action outcomes, and release its lease on completion.
+Each task must acquire the repository-wide run lease with `automation_run.py`, record blocked/no-action outcomes, and release its lease on completion. Only one scheduled role may write at a time.
 
 ## Validation
 
