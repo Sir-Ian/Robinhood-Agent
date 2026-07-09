@@ -12,9 +12,9 @@
     "incident_count": 1,
     "open_incident_count": 0,
     "reconciliation_count": 1,
-    "run_count": 2,
+    "run_count": 3,
     "statuses": {
-      "no_action": 1,
+      "no_action": 2,
       "succeeded": 1
     },
     "successful_or_no_action_rate": 1.0

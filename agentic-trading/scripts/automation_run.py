@@ -16,6 +16,7 @@ from validate_repository import validate
 
 
 RUNTIME = ROOT / ".runtime" / "locks"
+ACTIVE_LEASE = RUNTIME / "active.json"
 RUN_RECORDS = ROOT / "agentic-trading" / "logs" / "run_records.jsonl"
 INCIDENTS = ROOT / "agentic-trading" / "logs" / "incidents.jsonl"
 KILL_SWITCH = ROOT / "agentic-trading" / "state" / "kill_switch.yml"
@@ -79,7 +80,10 @@ def begin(args: argparse.Namespace) -> int:
         return 2
 
     RUNTIME.mkdir(parents=True, exist_ok=True)
-    path = RUNTIME / f"{args.automation}.json"
+    # All scheduled roles write overlapping ledgers and snapshots. A single
+    # repository-wide lease prevents cross-role corruption, not merely duplicate
+    # instances of the same role.
+    path = ACTIVE_LEASE
     existing = load_lock(path)
     if existing:
         expiry = datetime.fromisoformat(existing["expires_at"].replace("Z", "+00:00"))
@@ -99,7 +103,7 @@ def begin(args: argparse.Namespace) -> int:
 
 
 def finish(args: argparse.Namespace) -> int:
-    path = RUNTIME / f"{args.automation}.json"
+    path = ACTIVE_LEASE
     lock = load_lock(path)
     if not lock:
         raise SystemExit(f"no active lease for {args.automation}")
