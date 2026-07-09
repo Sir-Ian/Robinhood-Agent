@@ -38,6 +38,7 @@ The simple return is a preliminary account-level figure, not yet a cash-flow-aud
 
 | Run status | Count |
 | --- | ---: |
+| No Action | 1 |
 | Succeeded | 1 |
 
 - Successful-or-valid-no-action rate: 100.0%
