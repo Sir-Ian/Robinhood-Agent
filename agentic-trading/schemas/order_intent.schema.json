@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Order Intent",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["intent_id", "created_at", "expires_at", "symbol", "side", "dollar_amount", "status", "trigger", "idempotency_key", "evidence_class", "plan_version", "risk_policy_version", "autonomy_policy_version", "scoring_policy_version"],
+  "properties": {
+    "intent_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "symbol": {"type": "string", "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"},
+    "side": {"enum": ["buy", "sell"]},
+    "dollar_amount": {"type": "number", "minimum": 2},
+    "status": {"enum": ["paper_proposed", "paper_rejected", "paper_simulated", "live_review_requested", "expired", "cancelled"]},
+    "trigger": {"type": "string", "minLength": 1},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "evidence_class": {"enum": ["repository_recorded", "paper_simulated"]},
+    "plan_version": {"type": "string", "minLength": 1},
+    "risk_policy_version": {"type": "string", "minLength": 1},
+    "autonomy_policy_version": {"type": "string", "minLength": 1},
+    "scoring_policy_version": {"type": "string", "minLength": 1}
+  }
+}

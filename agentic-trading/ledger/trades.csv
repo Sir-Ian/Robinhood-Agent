@@ -1,0 +1,7 @@
+timestamp,account_alias,symbol,side,dollar_amount,quantity,price,public_execution_id,status,evidence_class,notes
+2026-06-11T15:40:40Z,robinhood_100_experiment,SGOV,buy,35.00,0.348296,100.4892,execution-20260611-sgov,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable
+2026-06-11T16:04:20Z,robinhood_100_experiment,VTI,buy,30.00,0.083481,359.3599,execution-20260611-vti,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable
+2026-06-11T16:04:33Z,robinhood_100_experiment,SCHD,buy,15.00,0.462410,32.4387,execution-20260611-schd,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable
+2026-06-11T16:04:41Z,robinhood_100_experiment,XLP,buy,10.00,0.116959,85.4999,execution-20260611-xlp,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable
+2026-06-11T16:04:48Z,robinhood_100_experiment,IAU,buy,5.00,0.065061,76.8499,execution-20260611-iau,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable
+2026-06-11T16:04:56Z,robinhood_100_experiment,QQQM,buy,5.00,0.017310,288.8441,execution-20260611-qqqm,filled,historical_import,Broker-confirmed backfill; original intent and confirmation record unavailable

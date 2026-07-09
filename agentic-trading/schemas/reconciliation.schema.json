@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reconciliation",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["reconciliation_id", "checked_at", "status", "summary", "evidence_class", "plan_version", "risk_policy_version", "autonomy_policy_version", "scoring_policy_version"],
+  "properties": {
+    "reconciliation_id": {"type": "string", "minLength": 1},
+    "checked_at": {"type": "string", "format": "date-time"},
+    "status": {"enum": ["passed", "failed", "resolved_with_limitation"]},
+    "summary": {"type": "string", "minLength": 1},
+    "evidence_class": {"enum": ["broker_confirmed", "historical_import", "repository_recorded"]},
+    "plan_version": {"type": "string", "minLength": 1},
+    "risk_policy_version": {"type": "string", "minLength": 1},
+    "autonomy_policy_version": {"type": "string", "minLength": 1},
+    "scoring_policy_version": {"type": "string", "minLength": 1}
+  }
+}

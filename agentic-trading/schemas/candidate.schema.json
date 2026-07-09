@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/agentic-trading/candidate.schema.json",
+  "title": "Discovery Candidate",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "candidate_id",
+    "created_at",
+    "created_by",
+    "symbol",
+    "asset_type",
+    "source",
+    "discovery_reason",
+    "observed_signal",
+    "price_at_discovery",
+    "data_timestamp",
+    "liquidity_snapshot",
+    "initial_risks",
+    "status",
+    "plan_version",
+    "risk_policy_version",
+    "autonomy_policy_version",
+    "scoring_policy_version"
+  ],
+  "properties": {
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": { "type": "string", "minLength": 1 },
+    "symbol": { "type": "string", "pattern": "^[A-Z][A-Z0-9.\\-]{0,9}$" },
+    "asset_type": { "type": "string", "enum": ["etf", "stock", "other"] },
+    "source": { "type": "string", "minLength": 1 },
+    "discovery_reason": { "type": "string", "minLength": 1 },
+    "observed_signal": { "type": "string", "minLength": 1 },
+    "price_at_discovery": { "type": "number", "exclusiveMinimum": 0 },
+    "data_timestamp": { "type": "string", "format": "date-time" },
+    "liquidity_snapshot": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["average_daily_dollar_volume", "bid_ask_spread_pct", "quote_timestamp"],
+      "properties": {
+        "average_daily_dollar_volume": { "type": "number", "minimum": 0 },
+        "bid_ask_spread_pct": { "type": "number", "minimum": 0 },
+        "aum": { "type": ["number", "null"], "minimum": 0 },
+        "market_cap": { "type": ["number", "null"], "minimum": 0 },
+        "quote_timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "initial_risks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "observed",
+        "researched",
+        "scored",
+        "promoted",
+        "trade_intent_created",
+        "risk_approved",
+        "executed",
+        "monitoring",
+        "closed",
+        "rejected_policy",
+        "rejected_liquidity",
+        "rejected_thesis",
+        "rejected_risk_reward",
+        "rejected_stale_data",
+        "rejected_duplicate",
+        "rejected_user_required"
+      ]
+    },
+    "plan_version": { "type": "string", "minLength": 1 },
+    "risk_policy_version": { "type": "string", "minLength": 1 },
+    "autonomy_policy_version": { "type": "string", "minLength": 1 },
+    "scoring_policy_version": { "type": "string", "minLength": 1 }
+  }
+}

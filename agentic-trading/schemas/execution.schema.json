@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Execution",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["execution_id", "created_at", "symbol", "side", "dollar_amount", "status", "idempotency_key", "evidence_class", "plan_version", "risk_policy_version", "autonomy_policy_version", "scoring_policy_version"],
+  "properties": {
+    "execution_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "symbol": {"type": "string", "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"},
+    "side": {"enum": ["buy", "sell"]},
+    "dollar_amount": {"type": "number", "minimum": 0},
+    "status": {"enum": ["paper_simulated", "broker_confirmed_historical_import", "reviewed_waiting_confirmation", "submitted", "filled", "partially_filled", "cancelled", "rejected", "failed", "uncertain"]},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "evidence_class": {"enum": ["paper_simulated", "historical_import", "repository_recorded", "broker_confirmed"]},
+    "plan_version": {"type": "string", "minLength": 1},
+    "risk_policy_version": {"type": "string", "minLength": 1},
+    "autonomy_policy_version": {"type": "string", "minLength": 1},
+    "scoring_policy_version": {"type": "string", "minLength": 1}
+  }
+}

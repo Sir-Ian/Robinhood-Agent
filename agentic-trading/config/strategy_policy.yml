@@ -1,0 +1,65 @@
+version: "2"
+mode: STAGED_AUTONOMY
+strategy_id: baseline_basket_v1
+status: hold_and_measure
+purpose: "Document the existing six-ETF allocation as a measurable baseline, not as a claim of proven alpha."
+
+baseline_date: "2026-06-11"
+target_weights_pct:
+  SGOV: 35
+  VTI: 30
+  SCHD: 15
+  XLP: 10
+  IAU: 5
+  QQQM: 5
+
+roles:
+  SGOV: treasury_bill_ballast
+  VTI: broad_us_equity_core
+  SCHD: dividend_quality_tilt
+  XLP: defensive_equity_tilt
+  IAU: gold_diversifier
+  QQQM: growth_tilt
+
+decision_policy:
+  active_action: hold
+  automatic_rebalancing_enabled: false
+  paper_rebalance_analysis_enabled: true
+  rebalance_review_cadence: quarterly
+  drift_review_threshold_percentage_points: 5
+  minimum_order_usd: 2
+  price_only_stop_losses_enabled: false
+  thesis_or_policy_trigger_required_for_change: true
+  note: "No allocation change is live-authorized. Paper analysis may compare alternatives and must include turnover and tax implications."
+
+benchmark_definitions:
+  original_etf_basket:
+    SGOV: 35
+    VTI: 30
+    SCHD: 15
+    XLP: 10
+    IAU: 5
+    QQQM: 5
+  cash_no_trade:
+    CASH: 100
+  vti_100:
+    VTI: 100
+  vti_70_sgov_30:
+    VTI: 70
+    SGOV: 30
+  sgov_100:
+    SGOV: 100
+
+research_rules:
+  hypotheses_must_be_falsifiable: true
+  strategy_changes_shadow_first: true
+  minimum_shadow_observations_before_proposal: 20
+  required_change_analysis:
+    - expected_edge
+    - what_is_already_priced_in
+    - downside_mechanism
+    - catalyst_or_evidence_window
+    - observable_falsifiers
+    - turnover_and_spread_cost
+    - benchmark_and_factor_exposure
+    - size_down_or_no_change_alternative

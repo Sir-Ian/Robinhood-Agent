@@ -1,0 +1,11 @@
+mode: STAGED_AUTONOMY
+active_stage: PAPER
+trading_enabled: false
+buying_enabled: false
+selling_enabled: false
+live_order_review_enabled: false
+paper_intents_enabled: true
+discovery_trading_enabled: false
+reason: "Paper stage. Broker policy requires per-order review disclosure and explicit human confirmation; scheduled tasks may never place orders."
+last_updated: "2026-07-09T19:20:00Z"
+last_updated_by: codex_repository_audit

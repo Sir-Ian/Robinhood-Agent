@@ -1,0 +1,21 @@
+version: "3"
+mode: STAGED_AUTONOMY
+active_matrix: agentic-trading/config/mvp_automation_matrix.yml
+scheduled_automations:
+  - morning_manager
+  - order_review
+  - end_of_day_sync
+  - weekly_review
+
+disabled_legacy_prompts:
+  - market_scanner
+  - opportunity_researcher
+  - bear_case_reviewer
+  - capital_allocator
+  - risk_gate
+  - post_trade_reconciler
+  - weekly_scorecard
+  - weekly_strategy_review
+  - trade_executor_legacy
+
+note: "Legacy research prompts remain available for explicit shadow work. They are not scheduled and cannot create live intents."
