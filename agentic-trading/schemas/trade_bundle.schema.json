@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/agentic-trading/trade_bundle.schema.json",
+  "title": "Trade Bundle",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "bundle_id",
+    "created_at",
+    "created_by",
+    "bundle_type",
+    "plan_version",
+    "risk_policy_version",
+    "autonomy_policy_version",
+    "scoring_policy_version",
+    "account_alias",
+    "reason",
+    "trigger",
+    "sell_legs",
+    "buy_legs",
+    "funding_source",
+    "expected_portfolio_impact",
+    "expected_cash_after",
+    "risk_checks_claimed",
+    "idempotency_key",
+    "requires_user_approval",
+    "status"
+  ],
+  "properties": {
+    "bundle_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "created_by": { "type": "string", "minLength": 1 },
+    "bundle_type": { "type": "string", "enum": ["cash_buy", "swap", "rebalance", "defensive_rebalance"] },
+    "plan_version": { "type": "string", "minLength": 1 },
+    "risk_policy_version": { "type": "string", "minLength": 1 },
+    "autonomy_policy_version": { "type": "string", "minLength": 1 },
+    "scoring_policy_version": { "type": "string", "minLength": 1 },
+    "account_alias": { "type": "string", "minLength": 1 },
+    "reason": { "type": "string", "minLength": 1 },
+    "trigger": { "type": "string", "minLength": 1 },
+    "sell_legs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/sell_leg" }
+    },
+    "buy_legs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/buy_leg" },
+      "minItems": 1
+    },
+    "funding_source": { "type": "string", "minLength": 1 },
+    "expected_portfolio_impact": { "type": "string", "minLength": 1 },
+    "expected_cash_after": { "type": "number" },
+    "risk_checks_claimed": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "idempotency_key": { "type": "string", "minLength": 1 },
+    "requires_user_approval": { "type": "boolean" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "trade_intent_created",
+        "risk_approved",
+        "risk_rejected",
+        "executed",
+        "partial_bundle",
+        "cancelled"
+      ]
+    }
+  },
+  "$defs": {
+    "sell_leg": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["symbol", "dollar_amount", "reason", "min_acceptable_proceeds"],
+      "properties": {
+        "symbol": { "type": "string", "pattern": "^[A-Z][A-Z0-9.\\-]{0,9}$" },
+        "dollar_amount": { "type": "number", "minimum": 2 },
+        "reason": { "type": "string", "minLength": 1 },
+        "min_acceptable_proceeds": { "type": "number", "minimum": 0 }
+      }
+    },
+    "buy_leg": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["symbol", "dollar_amount", "reason", "max_acceptable_price_or_slippage"],
+      "properties": {
+        "symbol": { "type": "string", "pattern": "^[A-Z][A-Z0-9.\\-]{0,9}$" },
+        "dollar_amount": { "type": "number", "minimum": 2 },
+        "reason": { "type": "string", "minLength": 1 },
+        "max_acceptable_price_or_slippage": { "type": ["number", "string"] }
+      }
+    }
+  }
+}

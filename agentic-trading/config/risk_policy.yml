@@ -1,0 +1,91 @@
+version: "2"
+mode: STAGED_AUTONOMY
+purpose: "Deterministic safety limits for paper decisions and human-approved live reviews."
+
+core_universe:
+  - SGOV
+  - VTI
+  - SCHD
+  - XLP
+  - IAU
+  - QQQM
+
+data_freshness:
+  account_snapshot_max_age_minutes: 5
+  quote_max_age_seconds_during_market: 60
+  position_snapshot_max_age_minutes: 5
+  intent_expiry_minutes: 10
+  stale_data_action: block
+
+order_limits:
+  minimum_order_usd: 2
+  maximum_single_order_usd: 20
+  maximum_daily_gross_notional_usd: 20
+  maximum_orders_per_market_day: 2
+  maximum_total_experiment_capital_usd: 125
+  regular_us_market_hours_only: true
+  fractional_or_dollar_orders_regular_hours_only: true
+  automatic_retry_allowed: false
+  duplicate_idempotency_key_allowed: false
+  broker_review_required: true
+  explicit_confirmation_after_review_required: true
+
+portfolio_limits:
+  minimum_cash_or_sgov_pct: 25
+  maximum_single_equity_etf_pct: 40
+  maximum_sector_etf_pct: 15
+  maximum_gold_pct: 10
+  maximum_equity_exposure_pct: 70
+  maximum_unapproved_symbol_weight_pct: 0
+
+drawdown_policy:
+  measurement: "Peak-to-trough account value, adjusted for external cash flows."
+  warning_drawdown_pct: 5
+  hard_stop_drawdown_pct: 10
+  warning_action: "Block new live buy reviews and require strategy re-underwrite."
+  hard_stop_action: "Disable all live reviews and placements; allow only a user-confirmed risk-reduction review."
+
+hard_stops:
+  - active_stage_not_human_approved_live
+  - scheduled_or_background_context
+  - live_execution_disabled
+  - kill_switch_blocks_side
+  - symbol_outside_core_universe
+  - missing_or_expired_intent
+  - missing_fresh_account_state
+  - missing_fresh_positions
+  - insufficient_unleveraged_buying_power
+  - stale_or_inactive_quote
+  - fractional_tradability_unverified
+  - market_session_invalid
+  - broker_review_alert
+  - missing_post_review_user_confirmation
+  - duplicate_idempotency_key
+  - reconciliation_uncertain
+  - account_identifier_present_in_public_record
+
+prohibited:
+  margin: true
+  options: true
+  crypto: true
+  futures: true
+  short_selling: true
+  leveraged_etfs: true
+  inverse_etfs: true
+  outside_hours_fractional_orders: true
+  automatic_policy_expansion: true
+
+post_trade_reconciliation:
+  required_after_every_fill: true
+  failure_action: "Keep live execution disabled, block trading in the kill switch, and append a critical incident record."
+  required_checks:
+    - reviewed_intent_existed
+    - explicit_confirmation_recorded
+    - symbol_and_side_match
+    - broker_order_state_verified
+    - filled_amount_reasonable
+    - average_fill_price_reasonable
+    - buying_power_updated
+    - position_quantity_updated
+    - no_unexpected_positions
+    - no_duplicate_orders

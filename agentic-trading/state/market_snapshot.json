@@ -1,0 +1,18 @@
+{
+  "schema_version": "2",
+  "mode": "STAGED_AUTONOMY",
+  "stage": "PAPER",
+  "updated_at": "2026-07-09T19:12:46Z",
+  "source": {"kind": "broker_read_only", "provider": "Robinhood MCP", "evidence_class": "broker_confirmed"},
+  "is_market_day": true,
+  "market_session": "regular_hours",
+  "quotes": {
+    "SGOV": {"price_usd": 100.48, "bid_usd": 100.47, "ask_usd": 100.48, "as_of": "2026-07-09T19:12:39Z", "previous_close_usd": 100.47, "state": "active"},
+    "VTI": {"price_usd": 371.34, "bid_usd": 371.33, "ask_usd": 371.35, "as_of": "2026-07-09T19:12:46Z", "previous_close_usd": 368.25, "state": "active"},
+    "SCHD": {"price_usd": 32.225, "bid_usd": 32.22, "ask_usd": 32.23, "as_of": "2026-07-09T19:12:45Z", "previous_close_usd": 32.34, "state": "active"},
+    "XLP": {"price_usd": 83.315, "bid_usd": 83.32, "ask_usd": 83.33, "as_of": "2026-07-09T19:12:46Z", "previous_close_usd": 84.39, "state": "active"},
+    "IAU": {"price_usd": 77.53, "bid_usd": 77.53, "ask_usd": 77.54, "as_of": "2026-07-09T19:12:46Z", "previous_close_usd": 76.74, "state": "active"},
+    "QQQM": {"price_usd": 297.54, "bid_usd": 297.53, "ask_usd": 297.54, "as_of": "2026-07-09T19:12:45Z", "previous_close_usd": 292.87, "state": "active"}
+  },
+  "notes": "Public sanitized quote snapshot; not valid for a later order review."
+}

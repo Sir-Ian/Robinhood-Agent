@@ -1,0 +1,27 @@
+{
+  "schema_version": "2",
+  "mode": "STAGED_AUTONOMY",
+  "stage": "PAPER",
+  "account_alias": "robinhood_100_experiment",
+  "updated_at": "2026-07-09T19:12:46Z",
+  "source": {
+    "kind": "broker_read_only",
+    "provider": "Robinhood MCP",
+    "evidence_class": "broker_confirmed"
+  },
+  "portfolio_value_usd": 101.23,
+  "equity_value_usd": 100.84,
+  "buying_power_usd": 0.39,
+  "cash_usd": 0.39,
+  "pending_deposits_usd": 0.0,
+  "positions": [
+    {"symbol": "SGOV", "quantity": 0.348296, "average_cost_usd": 100.49, "market_price_usd": 100.48, "market_value_usd": 35.0, "weight_pct": 34.57},
+    {"symbol": "VTI", "quantity": 0.083481, "average_cost_usd": 359.36, "market_price_usd": 371.34, "market_value_usd": 31.0, "weight_pct": 30.62},
+    {"symbol": "SCHD", "quantity": 0.46241, "average_cost_usd": 32.44, "market_price_usd": 32.225, "market_value_usd": 14.9, "weight_pct": 14.72},
+    {"symbol": "XLP", "quantity": 0.116959, "average_cost_usd": 85.5, "market_price_usd": 83.315, "market_value_usd": 9.74, "weight_pct": 9.63},
+    {"symbol": "IAU", "quantity": 0.065061, "average_cost_usd": 76.85, "market_price_usd": 77.53, "market_value_usd": 5.04, "weight_pct": 4.98},
+    {"symbol": "QQQM", "quantity": 0.01731, "average_cost_usd": 288.85, "market_price_usd": 297.54, "market_value_usd": 5.15, "weight_pct": 5.09}
+  ],
+  "privacy": "sanitized_no_account_or_broker_order_identifiers",
+  "notes": "Read-only snapshot. Position quotes and portfolio total were captured within the same audit but not atomically."
+}

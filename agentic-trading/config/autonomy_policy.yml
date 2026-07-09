@@ -1,0 +1,109 @@
+version: "2"
+mode: STAGED_AUTONOMY
+active_stage: PAPER
+purpose: "Maximize unattended research and operations while preserving broker-required per-order human confirmation."
+
+stages:
+  OBSERVE:
+    read_only_broker_access: true
+    paper_intents_allowed: false
+    live_order_review_allowed: false
+    live_order_placement_allowed: false
+  PAPER:
+    read_only_broker_access: true
+    paper_intents_allowed: true
+    live_order_review_allowed: false
+    live_order_placement_allowed: false
+  HUMAN_APPROVED_LIVE:
+    read_only_broker_access: true
+    paper_intents_allowed: true
+    live_order_review_allowed: true
+    live_order_placement_allowed: true
+    per_order_human_confirmation_required: true
+  ADAPTIVE_RESEARCH:
+    read_only_broker_access: true
+    paper_intents_allowed: true
+    live_order_review_allowed: false
+    live_order_placement_allowed: false
+    outside_baseline_universe_shadow_only: true
+
+live_execution:
+  enabled: false
+  enabled_by: null
+  enabled_at: null
+  standing_permission_valid: false
+  per_order_human_confirmation_required: true
+  note: "Robinhood review output must be presented to the user and explicitly confirmed before each placement. Scheduled tasks may never place orders."
+
+account:
+  alias: robinhood_100_experiment
+  account_number_must_not_be_persisted: true
+  expected_initial_capital_usd: 100
+  external_deposits_allowed: false
+
+live_trading_scope:
+  allowed_symbols:
+    - SGOV
+    - VTI
+    - SCHD
+    - XLP
+    - IAU
+    - QQQM
+  outside_universe_live_trading_enabled: false
+  single_stocks_live_enabled: false
+  options_enabled: false
+  margin_enabled: false
+  crypto_enabled: false
+  leveraged_etfs_enabled: false
+  inverse_etfs_enabled: false
+  short_selling_enabled: false
+
+research_scope:
+  outside_universe_discovery_allowed: true
+  outside_universe_outputs:
+    - candidate
+    - thesis
+    - score
+    - shadow_trade
+    - proposal
+  live_intents_from_discovery_forbidden: true
+
+promotion_gates:
+  explicit_user_approval_required: true
+  minimum_successful_paper_sessions: 20
+  minimum_calendar_days_observed: 30
+  reconciliation_pass_rate_required: 1.0
+  critical_incidents_allowed: 0
+  policy_violations_allowed: 0
+  public_validation_must_pass: true
+  unresolved_evidence_gaps_allowed: 0
+  agents_may_propose_but_not_promote: true
+
+agent_permissions:
+  morning_manager:
+    may_read_broker_data: true
+    may_create_paper_intents: true
+    may_create_live_intents: false
+    may_place_orders: false
+  order_review:
+    may_read_broker_data: true
+    may_prepare_live_review_only_in_human_approved_live_stage: true
+    may_place_orders: false
+  end_of_day_sync:
+    may_reconcile_read_only: true
+    may_update_shared_memory: true
+    may_place_orders: false
+  weekly_review:
+    may_propose_changes: true
+    may_enable_live_execution: false
+    may_loosen_policy: false
+    may_place_orders: false
+
+logging_requirements:
+  run_records: agentic-trading/logs/run_records.jsonl
+  order_intents: agentic-trading/orders/order_intents.jsonl
+  executions: agentic-trading/orders/executions.jsonl
+  reconciliations: agentic-trading/evaluation/reconciliations.jsonl
+  portfolio_snapshot: agentic-trading/state/portfolio_snapshot.json
+  market_snapshot: agentic-trading/state/market_snapshot.json
+  handoff: agentic-trading/state/latest_handoff.md

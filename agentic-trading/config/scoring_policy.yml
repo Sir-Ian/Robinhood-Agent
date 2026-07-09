@@ -1,0 +1,72 @@
+version: 1
+purpose: "100-point scoring rubric for dynamic discovery candidates."
+
+score_components:
+  momentum:
+    max_points: 20
+    description: "Price trend, relative strength, and signal durability."
+  quality_fundamentals:
+    max_points: 15
+    description: "Issuer quality for ETFs or business/fundamental quality for stocks."
+  catalyst_news:
+    max_points: 20
+    description: "Identifiable 3-12 month catalyst, news, setup, or macro tailwind."
+  liquidity_execution_quality:
+    max_points: 15
+    description: "Dollar volume, spread, quote freshness, and fractional/order feasibility."
+  portfolio_fit_diversification:
+    max_points: 15
+    description: "Incremental benefit versus current allocation and funding source."
+  risk_control_invalidation_clarity:
+    max_points: 15
+    description: "Clear invalidation, exit logic, max loss assumption, and downside controls."
+
+promotion_thresholds:
+  min_total_score: 75
+  min_reward_risk: "2:1"
+  min_liquidity_score: 10
+  min_risk_control_score: 10
+  min_portfolio_fit_score: 10
+
+score_interpretation:
+  90_to_100: "Exceptional candidate; still must pass policy and risk gates."
+  75_to_89: "Promotion eligible if all required gates pass."
+  60_to_74: "Research watchlist only; do not promote."
+  below_60: "Reject or keep only if there is a documented reason to revisit."
+
+required_score_record_fields:
+  - score_id
+  - candidate_id
+  - symbol
+  - scored_at
+  - scored_by
+  - model
+  - reasoning_effort
+  - momentum_score
+  - quality_score
+  - catalyst_score
+  - liquidity_score
+  - risk_score
+  - portfolio_fit_score
+  - total_score
+  - reward_risk_estimate
+  - confidence
+  - evidence_summary
+  - data_sources
+  - status
+  - plan_version
+  - risk_policy_version
+  - autonomy_policy_version
+  - scoring_policy_version
+
+calibration:
+  required: true
+  file: agentic-trading/evaluation/scoring_calibration.md
+  evaluate_confidence_against_outcomes: true
+  evaluate_score_bands_against_forward_returns: true
+  forward_return_windows_trading_days:
+    - 1
+    - 5
+    - 20
+    - 60
+  policy_change_rule: "Agents may propose scoring changes, but may not autonomously loosen thresholds."

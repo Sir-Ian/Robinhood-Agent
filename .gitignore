@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+.runtime/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Raw broker exports are never public artifacts.
+agentic-trading/private/
+agentic-trading/logs/*.raw.*
+agentic-trading/logs/*-private.*

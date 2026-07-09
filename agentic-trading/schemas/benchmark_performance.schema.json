@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/agentic-trading/benchmark_performance.schema.json",
+  "title": "Benchmark Performance",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "date",
+    "portfolio_value",
+    "benchmark_name",
+    "benchmark_value",
+    "relative_performance",
+    "max_drawdown",
+    "notes"
+  ],
+  "properties": {
+    "date": { "type": "string", "format": "date" },
+    "portfolio_value": { "type": "number", "minimum": 0 },
+    "benchmark_name": {
+      "type": "string",
+      "enum": [
+        "cash_no_trade",
+        "original_etf_basket",
+        "vti_100",
+        "vti_70_sgov_30",
+        "sgov_100"
+      ]
+    },
+    "benchmark_value": { "type": "number", "minimum": 0 },
+    "relative_performance": { "type": "number" },
+    "max_drawdown": { "type": "number" },
+    "notes": { "type": "string" }
+  }
+}

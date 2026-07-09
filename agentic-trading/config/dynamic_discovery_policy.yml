@@ -1,0 +1,135 @@
+version: 2
+mode: STAGED_AUTONOMY
+purpose: "Outside-universe discovery is research-only and cannot create live intents."
+
+active_stage_discovery:
+  enabled: false
+  allowed_outputs:
+    - candidates
+    - notes
+    - shadow_trades
+    - proposals
+  forbidden_outputs:
+    - live_executable_bundles
+    - live_outside_universe_order_intents
+    - live_single_stock_orders
+
+core_universe:
+  tier: 0
+  description: "Only universe eligible for a future human-approved live review, subject to every active policy and kill-switch gate."
+  symbols:
+    - SGOV
+    - VTI
+    - SCHD
+    - XLP
+    - IAU
+    - QQQM
+
+tiers:
+  tier_1_discovered_etfs:
+    may_be_autonomous: false
+    active_status: shadow_or_proposal_only
+    requirements:
+      us_listed_etf: true
+      leveraged: false
+      inverse: false
+      options_based_requires_explicit_approval: true
+      crypto_or_spot_crypto_requires_explicit_approval: true
+      min_average_daily_dollar_volume: 10000000
+      max_bid_ask_spread_pct: 0.50
+      min_aum_if_available: 100000000
+      clear_thesis_required: true
+      must_improve_portfolio_risk_reward: true
+    allocation_limits:
+      max_initial_allocation_pct_account_value: 15
+      max_total_discovered_etf_sleeve_pct_account_value: 25
+
+  tier_2_discovered_stocks:
+    may_be_autonomous: false
+    active_status: shadow_or_proposal_only
+    requirements:
+      us_listed_common_stock: true
+      otc_allowed: false
+      penny_stocks_allowed: false
+      min_share_price: 5
+      min_market_cap_if_available: 2000000000
+      min_average_daily_dollar_volume: 25000000
+      max_bid_ask_spread_pct: 0.50
+      binary_event_trade_requires_explicit_approval: true
+      earnings_window_rule: "Avoid new buys within 2 trading days before earnings unless the strategy explicitly marks the trade as an earnings-risk trade and the risk gate approves it."
+      clear_thesis_required: true
+      catalyst_required: true
+      invalidation_required: true
+      exit_plan_required: true
+    allocation_limits:
+      max_initial_allocation_pct_account_value: 10
+      max_total_discovered_stock_sleeve_pct_account_value: 20
+
+  tier_3_restricted:
+    never_autonomous: true
+    instruments:
+      - options
+      - margin
+      - crypto
+      - futures
+      - leveraged_etfs
+      - inverse_etfs
+      - otc_securities
+      - penny_stocks
+      - illiquid_securities
+      - missing_or_stale_quote_data
+      - anything_that_cannot_pass_robinhood_mcp_order_review
+      - anything_requiring_user_approval
+
+discovery_sleeve:
+  max_total_discovery_sleeve_pct_account_value: 35
+  min_sgov_or_cash_like_ballast_pct_account_value: 20
+  soft_drawdown_disable_discovery_buys_pct: 8
+  hard_drawdown_may_sell_discovery_for_defensive_rebalance_pct: 10
+
+candidate_lifecycle:
+  active_statuses:
+    - observed
+    - researched
+    - scored
+    - promoted
+    - trade_intent_created
+    - risk_approved
+    - executed
+    - monitoring
+    - closed
+  rejected_statuses:
+    - rejected_policy
+    - rejected_liquidity
+    - rejected_thesis
+    - rejected_risk_reward
+    - rejected_stale_data
+    - rejected_duplicate
+    - rejected_user_required
+
+promotion_rules:
+  min_total_score: 75
+  min_reward_risk: "2:1"
+  must_pass_dynamic_discovery_policy: true
+  thesis_file_required: true
+  bear_case_review_required: true
+  explicit_invalidation_required: true
+  planned_funding_source_required: true
+  drawdown_policy_must_allow: true
+  kill_switch_must_be_off: true
+  shadow_trade_required_if_not_traded: true
+
+bear_case_required_sections:
+  - main_bear_case
+  - what_would_disprove_the_thesis
+  - what_could_go_wrong_operationally
+  - liquidity_spread_concern
+  - event_earnings_concern
+  - why_the_trade_is_still_worth_considering
+  - exit_trigger
+
+version_fields_required_on_decision_records:
+  - plan_version
+  - risk_policy_version
+  - autonomy_policy_version
+  - scoring_policy_version

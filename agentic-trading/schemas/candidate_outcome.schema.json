@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/agentic-trading/candidate_outcome.schema.json",
+  "title": "Candidate Outcome",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "outcome_id",
+    "candidate_id",
+    "symbol",
+    "asset_type",
+    "decision_status",
+    "reference_price",
+    "observed_at",
+    "return_1d",
+    "return_5d",
+    "return_20d",
+    "return_60d",
+    "outcome_notes",
+    "plan_version",
+    "risk_policy_version",
+    "autonomy_policy_version",
+    "scoring_policy_version"
+  ],
+  "properties": {
+    "outcome_id": { "type": "string", "minLength": 1 },
+    "candidate_id": { "type": "string", "minLength": 1 },
+    "symbol": { "type": "string", "pattern": "^[A-Z][A-Z0-9.\\-]{0,9}$" },
+    "asset_type": { "type": "string", "enum": ["etf", "stock", "other"] },
+    "decision_status": {
+      "type": "string",
+      "enum": ["promoted_traded", "promoted_shadow", "rejected", "watchlist", "closed"]
+    },
+    "reference_price": { "type": "number", "exclusiveMinimum": 0 },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "return_1d": { "type": ["number", "null"] },
+    "return_5d": { "type": ["number", "null"] },
+    "return_20d": { "type": ["number", "null"] },
+    "return_60d": { "type": ["number", "null"] },
+    "outcome_notes": { "type": "string" },
+    "plan_version": { "type": "string", "minLength": 1 },
+    "risk_policy_version": { "type": "string", "minLength": 1 },
+    "autonomy_policy_version": { "type": "string", "minLength": 1 },
+    "scoring_policy_version": { "type": "string", "minLength": 1 }
+  }
+}
