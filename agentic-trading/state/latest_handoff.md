@@ -1,12 +1,12 @@
 # Latest Handoff
 
-Updated: 2026-07-09
+Updated: 2026-07-09T20:19:02Z
 Mode: `STAGED_AUTONOMY`
 Stage: `PAPER`
 
 ## Status
 
-Read-only Robinhood connectivity is working for the account nicknamed `Agentic`. The account holds the six baseline ETFs and had a read-only portfolio value of approximately $101.23 during the July 9 audit. All live execution and order-review flags remain disabled.
+Read-only Robinhood connectivity is working for the account nicknamed `Agentic`. Fresh broker facts show the same six baseline ETFs, approximately $101.26 of portfolio value, and $0.39 of buying power. All live execution and order-review flags remain disabled.
 
 ## Historical Evidence Gap
 
@@ -16,7 +16,7 @@ Six agentic market buys totaling $100 filled on June 11, 2026, but the repositor
 
 1. Morning Manager: refresh sanitized state and record a no-action or paper decision.
 2. Order Review: simulate any eligible paper intent; do not call order placement.
-3. End-of-Day Sync: append benchmark and reconciliation evidence.
+3. End-of-Day Sync: append benchmark and reconciliation evidence when the time series is complete.
 4. Weekly Review: regenerate analytics and decide whether controls should tighten or remain unchanged.
 
 ## Open Risks
