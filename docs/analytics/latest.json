@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-09T19:12:46Z",
+  "as_of": "2026-07-09T20:19:02Z",
   "benchmark_status": "insufficient_time_series",
   "limitations": [
     "The simple return uses $100 initial capital and is not yet a cash-flow-audited time-weighted return.",
@@ -11,11 +11,11 @@
   "operations": {
     "incident_count": 1,
     "open_incident_count": 0,
-    "reconciliation_count": 1,
-    "run_count": 3,
+    "reconciliation_count": 2,
+    "run_count": 4,
     "statuses": {
       "no_action": 2,
-      "succeeded": 1
+      "succeeded": 2
     },
     "successful_or_no_action_rate": 1.0
   },
@@ -26,54 +26,54 @@
       {
         "average_cost_usd": 100.49,
         "market_price_usd": 100.48,
-        "market_value_usd": 35.0,
+        "market_value_usd": 34.99678208,
         "quantity": 0.348296,
         "symbol": "SGOV",
-        "weight_pct": 34.57
+        "weight_pct": 34.56
       },
       {
         "average_cost_usd": 359.36,
-        "market_price_usd": 371.34,
-        "market_value_usd": 31.0,
+        "market_price_usd": 371.5,
+        "market_value_usd": 31.0131915,
         "quantity": 0.083481,
         "symbol": "VTI",
-        "weight_pct": 30.62
+        "weight_pct": 30.63
       },
       {
         "average_cost_usd": 32.44,
-        "market_price_usd": 32.225,
-        "market_value_usd": 14.9,
+        "market_price_usd": 32.2793,
+        "market_value_usd": 14.92627111,
         "quantity": 0.46241,
         "symbol": "SCHD",
-        "weight_pct": 14.72
+        "weight_pct": 14.74
       },
       {
         "average_cost_usd": 85.5,
-        "market_price_usd": 83.315,
-        "market_value_usd": 9.74,
+        "market_price_usd": 83.2,
+        "market_value_usd": 9.7309888,
         "quantity": 0.116959,
         "symbol": "XLP",
-        "weight_pct": 9.63
+        "weight_pct": 9.61
       },
       {
         "average_cost_usd": 76.85,
-        "market_price_usd": 77.53,
-        "market_value_usd": 5.04,
+        "market_price_usd": 77.52,
+        "market_value_usd": 5.04352872,
         "quantity": 0.065061,
         "symbol": "IAU",
         "weight_pct": 4.98
       },
       {
         "average_cost_usd": 288.85,
-        "market_price_usd": 297.54,
-        "market_value_usd": 5.15,
+        "market_price_usd": 297.99,
+        "market_value_usd": 5.1582069,
         "quantity": 0.01731,
         "symbol": "QQQM",
         "weight_pct": 5.09
       }
     ],
-    "simple_return_since_initial_capital": 0.012299999999999978,
-    "value_usd": 101.23
+    "simple_return_since_initial_capital": 0.012592927999999892,
+    "value_usd": 101.2592928
   },
   "stage": "PAPER",
   "strategy_id": "baseline_basket_v1",
